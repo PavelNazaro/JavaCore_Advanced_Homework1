@@ -3,7 +3,6 @@
 // Если участник не смог пройти одно из препятствий, то дальше по списку он препятствий не идет.
 
 public class CheckTask3 {
-
     public static void main(String[] args) {
 
         //Массив участников
@@ -21,7 +20,6 @@ public class CheckTask3 {
         missions[1] = new RunningTrack("Дорожка 2", 120);
         missions[2] = new Wall("Стена 1", 1);
         missions[3] = new Wall("Стена 2", 3);
-
 
         for (int i = 0; i < members.length; i++) {
             int countDo = 0;                    //Счетчик выполненных испытаний

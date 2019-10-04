@@ -5,6 +5,7 @@
 // У препятствий есть длина (для дорожки) или высота (для стены), а участников ограничения на бег и прыжки.
 
 public class CheckTask2{
+
     public static void main(String[] args) {
         RunAndJump man = new Human("Иван", 100, 2);     //создаем человека по имени Иван
         RunAndJump cat = new Cat("Барсик", 50, 3);     //создаем кота по имени Барсик

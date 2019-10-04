@@ -1,4 +1,5 @@
 public interface RunAndJump {
+
     void run();     //Для первого задания
     void jump();    //Для первого задания
     int getRun();

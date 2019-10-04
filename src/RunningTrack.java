@@ -1,4 +1,5 @@
 public class RunningTrack implements Mission{
+
     private final String title;
     private final int length;
 

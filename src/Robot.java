@@ -1,4 +1,5 @@
 public class Robot implements RunAndJump{
+
     private final String name;
     private final int run;
     private final int jump;

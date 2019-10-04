@@ -1,4 +1,5 @@
 public class Wall implements Mission{
+    
     private final String title;
     private final int height;
 
