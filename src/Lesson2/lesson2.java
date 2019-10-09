@@ -2,41 +2,51 @@ package Lesson2;
 
 public class lesson2 {
     public static void main(String[] args) {
-        //String[][] mas = new String[4][4];
-        String[][] mas = {{"1","2","3","4"},
+        //String[][] arr = new String[4][4];
+        String[][] arr = {{"1","2","3","4"},
                 {"5","6","7","8"},
                 {"9","10","11","12"},
                 {"13","14","15","16"}
         };
 
         try {
-            System.out.println("Сумма = " + newMethodTest(mas));     //Вызываем метод по заданию
+            System.out.println("Сумма = " + arrayProcessing(arr));     //Вызываем метод по заданию
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private static int newMethodTest(String[][] mas) {
-        int sum = 0;
-
+    private static int arrayProcessing(String[][] arr) {
         //Задание 1
         System.out.println("Задание 1:");
-        if (mas.length != 4 || mas[0].length != 4)
-            throw new MyArraySizeException();           //Бросаем исключение неверного размера массива
-        else
-            System.out.println("Все ок!");
+        checkArraySize(arr);
+        System.out.println("Массив верного размера!");
 
         //Задание 2
         System.out.println("\nЗадание 2:");
-        for (int i = 0; i < mas.length; i++) {
-            for (int j = 0; j < mas[0].length; j++) {
+
+        return arraySumCheck(arr);
+    }
+
+    private static int arraySumCheck(String[][] arr) {
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
                 try {
-                    sum += Integer.parseInt(mas[i][j]);
+                    sum += Integer.parseInt(arr[i][j]);
                 } catch (NumberFormatException e) {
                     throw new MyArrayDataException(i, j);   //Бросаем исключение ошибки в преобразовании
                 }
             }
         }
         return sum;
+    }
+
+    private static void checkArraySize(String[][] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr.length != 4 || arr[i].length != 4) {
+                throw new MyArraySizeException();           //Бросаем исключение неверного размера массива
+            }
+        }
     }
 }
