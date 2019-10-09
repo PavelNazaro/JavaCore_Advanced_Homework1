@@ -6,13 +6,17 @@ public class lesson2 {
         String[][] mas = {{"1","2","3","4"},
                 {"5","6","7","8"},
                 {"9","10","11","12"},
-                {"13","14","15","16"}
+                //{"13","14","15","16"}
         };
 
-        newMethodTest(mas);     //Вызываем метод по заданию
+        try {
+            System.out.println("Сумма = " + newMethodTest(mas));     //Вызываем метод по заданию
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    private static void newMethodTest(String[][] mas) {
+    private static int newMethodTest(String[][] mas) {
         int sum = 0;
 
         //Задание 1
@@ -33,6 +37,6 @@ public class lesson2 {
                 }
             }
         }
-        System.out.println("Сумма = " + sum);
+        return sum;
     }
 }
