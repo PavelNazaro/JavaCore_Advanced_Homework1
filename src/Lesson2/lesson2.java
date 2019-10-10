@@ -1,8 +1,8 @@
 package Lesson2;
 
 public class lesson2 {
-    private static int lengthX = 4;
-    private static int lengthY = 4;
+    private static final int lengthX = 4;
+    private static final int lengthY = 4;
 
     public static void main(String[] args) {
         String[][] arr = {{"1","2","3","4"},
@@ -13,7 +13,7 @@ public class lesson2 {
 
         try {
             System.out.println("Сумма = " + arrayProcessing(arr));     //Вызываем метод по заданию
-        } catch (Exception e) {
+        } catch (MyException e) {
             System.out.println(e.getMessage());
         }
     }
