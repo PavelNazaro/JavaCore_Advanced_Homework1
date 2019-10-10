@@ -1,8 +1,8 @@
 package Lesson2;
 
 public class lesson2 {
-    private static final int lengthX = 4;
-    private static final int lengthY = 4;
+    private static final int LENGTH_X = 4;
+    private static final int LENGTH_Y = 4;
 
     public static void main(String[] args) {
         String[][] arr = {{"1","2","3","4"},
@@ -45,15 +45,15 @@ public class lesson2 {
     }
 
     private static void checkArraySize(String[][] arr) {
-        if (arr.length == lengthY){
+        if (arr.length == LENGTH_Y){
             for (int i = 0; i < arr.length; i++) {
-                if (arr[i].length != lengthX) {
-                    throw new MyArraySizeException(lengthX, lengthY);           //Бросаем исключение неверного размера массива
+                if (arr[i].length != LENGTH_X) {
+                    throw new MyArraySizeException(LENGTH_X, LENGTH_Y);           //Бросаем исключение неверного размера массива
                 }
             }
         }
         else {
-            throw new MyArraySizeException(lengthX, lengthY);           //Бросаем исключение неверного размера массива
+            throw new MyArraySizeException(LENGTH_X, LENGTH_Y);           //Бросаем исключение неверного размера массива
         }
     }
 }
