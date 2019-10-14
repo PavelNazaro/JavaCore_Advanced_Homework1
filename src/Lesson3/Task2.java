@@ -3,8 +3,9 @@ package Lesson3;
 import java.util.*;
 
 public class Task2 {
+    private static Map<String, List<Integer>> phoneBook = new HashMap<>();
+
     public static void main(String[] args) {
-        Map<String, List<Integer>> phoneBook = new HashMap<>();
         addNamesAndPhones(phoneBook);
 
         //Вывод телефонной книги:
@@ -16,20 +17,38 @@ public class Task2 {
     }
 
     private static void addNamesAndPhones(Map<String, List<Integer>> phoneBook) {
-        putPhoneBook(phoneBook, "Иванов", 5444644);
-        putPhoneBook(phoneBook, "Смирнов", 3469831);
-        putPhoneBook(phoneBook, "Сидоров", 4433685);
-        putPhoneBook(phoneBook, "Сидоров", 3456787);
-        putPhoneBook(phoneBook, "Петров", 2345677);
+        putPhoneBook("Иванов", 5444644);
+        putPhoneBook("Смирнов", 3469831);
+        putPhoneBook("Сидоров", 4433685);
+        putPhoneBook("Сидоров", 3456787);
+        putPhoneBook("Петров", 2345677);
     }
 
-    private static void putPhoneBook(Map<String, List<Integer>> phoneBook, String name, int number) {
+    private static void putPhoneBook(String name, int number) {
         List<Integer> getPhoneBookValue = phoneBook.get(name);
-        List<Integer> list = new ArrayList<>();
-        list.add(number);
-        if (getPhoneBookValue != null) {
-            list.addAll(getPhoneBookValue);
+        List<Integer> phones = phoneBook.putIfAbsent(name, new ArrayList<>());
+        if (getPhoneBookValue == null) {
+            phoneBook.put(name, List.of(number));
         }
-        phoneBook.put(name, list);
+        else {
+            phones.add(number);
+            phoneBook.put(name, phones);
+        }
+        System.out.println(phones);
+
+
+        
+        //Было
+//        List<Integer> phones = map.putIfAbsent(name, new ArrayList<>());
+//        phones.add(number);
+
+//        List<Integer> getPhoneBookValue = phoneBook.get(name);
+//        List<Integer> list = new ArrayList<>();
+//        list.add(number);
+//        if (getPhoneBookValue != null) {
+//            list.addAll(getPhoneBookValue);
+//        }
+//        System.out.println(phones);
+//        phoneBook.put(name, list);
     }
 }
