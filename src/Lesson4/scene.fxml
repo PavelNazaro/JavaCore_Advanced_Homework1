@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane id="gridPane" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Lesson4.FXMLDocumentController">
+    <TextArea
+            GridPane.rowIndex="0"
+            GridPane.columnSpan="2"
+            focusTraversable="false"
+            prefWidth="320"
+            prefHeight="300"
+            fx:id="textArea"
+    />
+    <TextField
+            GridPane.rowIndex="1"
+            GridPane.columnIndex="0"
+            prefWidth="240"
+            onAction="#handleButtonAction"
+            fx:id="textField"
+    />
+    <Button
+            GridPane.rowIndex="1"
+            GridPane.columnIndex="1"
+            minWidth="80"
+            text="Добавить"
+            onAction="#handleButtonAction"
+            fx:id="button" />
+</GridPane>
