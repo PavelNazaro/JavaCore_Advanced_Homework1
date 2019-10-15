@@ -25,11 +25,7 @@ public class Task2 {
     }
 
     private static void putPhoneBook(String name, String number) {
-        Set<String> phones = getPhones(name);
+        Set<String> phones = phoneBook.computeIfAbsent(name, key -> new HashSet<>());
         phones.add(number);
-    }
-
-    private static Set<String> getPhones(String name) {
-        return phoneBook.computeIfAbsent(name, key -> new HashSet<>());
     }
 }
