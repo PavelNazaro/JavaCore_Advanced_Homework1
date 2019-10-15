@@ -1,8 +1,13 @@
 package Lesson4;
 
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+
+import javax.swing.*;
 
 public class FXMLDocumentController {
 
@@ -16,6 +21,9 @@ public class FXMLDocumentController {
     public TextField textField;
 
     @FXML
+    public MenuBar menuBar;
+
+    @FXML
     private void handleButtonAction(ActionEvent event) {
         if (!textField.getText().equals("")) {
             textArea.appendText(textField.getText() + "\n");
@@ -23,4 +31,13 @@ public class FXMLDocumentController {
         }
     }
 
+    @FXML
+    private void handleAboutAction(ActionEvent event) {
+        JOptionPane.showMessageDialog(null, "Create by PavelNazaro");
+    }
+
+    @FXML
+    private void handleExitAction(ActionEvent event) {
+        System.exit(0);
+    }
 }
