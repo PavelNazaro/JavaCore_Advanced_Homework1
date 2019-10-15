@@ -44,5 +44,4 @@
                 fx:id="button"
         />
     </GridPane>
-
 </VBox>
