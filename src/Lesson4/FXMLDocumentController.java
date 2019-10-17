@@ -1,10 +1,9 @@
 package Lesson4;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
-import javax.swing.*;
 
 public class FXMLDocumentController {
 
@@ -23,18 +22,21 @@ public class FXMLDocumentController {
     @FXML
     private void handleButtonAction(ActionEvent event) {
         if (!textField.getText().equals("")) {
-            textArea.appendText(textField.getText() + "\n");
+            textArea.appendText(textField.getText() + System.lineSeparator());
             textField.clear();
         }
     }
 
     @FXML
     private void handleAboutAction(ActionEvent event) {
-        JOptionPane.showMessageDialog(null, "Create by PavelNazaro");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("Create by PavelNazaro");
+        alert.setHeaderText("About");
+        alert.show();
     }
 
     @FXML
     private void handleExitAction(ActionEvent event) {
-        System.exit(0);
+        Platform.exit();
     }
 }

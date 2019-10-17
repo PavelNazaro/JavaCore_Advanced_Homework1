@@ -27,6 +27,7 @@
                 prefWidth="320"
                 prefHeight="300"
                 fx:id="textArea"
+                editable="false"
         />
         <TextField
                 GridPane.rowIndex="1"
