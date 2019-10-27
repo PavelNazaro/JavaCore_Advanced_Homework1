@@ -4,15 +4,15 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class Client {
     public static Socket socket;
     public static DataInputStream in;
     public static DataOutputStream out;
 
-    public static int flag = 0;
+    public static volatile boolean flagStop = false;
 
+    public static Thread startWriteThread = new Thread(Client::startWrite);
     public static Thread startReadThread = new Thread(Client::startRead);
 
     public static void main(String[] args) {
@@ -25,50 +25,31 @@ public class Client {
             String str = in.readUTF();
             System.out.println("Сервер: " + str);
 
+            startReadThread.setDaemon(true);
             startReadThread.start();
 
-            Scanner consoleIn = new Scanner(System.in);
-            System.out.println("Чат открыт:");
-            while (true) {
-                String message = consoleIn.nextLine();
+            startWriteThread.setDaemon(true);
+            startWriteThread.start();
 
-                try {
-                    out.writeUTF(message);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            while (!flagStop) {
+                Thread.onSpinWait();
+            }
+            System.out.println("Client stopped!");
 
-                if (message.equals("/end") || flag == 1/*|| startReadThread.isInterrupted()*/){
-                    break;
-                }
-            }
-            System.out.println("Клиент завершился по команде /end");
-            flag = 1;
-            try {
-                socket.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private static void startRead() {
-        while (true) {
-            String str = null;
-            try {
-                str = in.readUTF();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            System.out.println("Клиент: " + str);
-            if (str.equals("/end") || flag == 1) {
-                break;
-            }
-        }
-        System.out.println("Клиент завершился по команде сервера");
-        flag = 1;
-        //startReadThread.interrupt();
+        WriteRead.messageFromClient(in, "Клиент");
+
+        flagStop =true;
+    }
+
+    private static void startWrite() {
+        WriteRead.messageForClient(out, "Клиент");
+
+        flagStop =true;
     }
 }
