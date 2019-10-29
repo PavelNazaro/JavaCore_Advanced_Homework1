@@ -32,6 +32,7 @@ public class WriteRead {
                 str = in.readUTF();
             } catch (IOException e) {
                 e.printStackTrace();
+                break;
             }
             if (serverOrClient.equals("Сервер")){
                 System.out.println("Клиент: " + str);
